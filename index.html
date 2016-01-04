@@ -14,9 +14,26 @@
             img {
                 width: 100%;
                 height: 100%;
+				z-index:-9999;
             }
         </style>
+        <link rel="stylesheet" type="text/css" href="css/style2.css" />
         <script src="js/rainyday.min.js"></script>
+        <script src="js/modernizr.custom.63321.js"></script>
+        <script src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.dropdown.js"></script>
+		<script type="text/javascript">
+			
+			$( function() {
+				$( '#cd-dropdown' ).dropdown( {
+					gutter : 5,
+					delay : 100,
+					random : true
+				} );
+				$( '.cd-select' ).click();
+			});
+
+		</script>
         <script>
             function run() {
                 var image = document.getElementById('background');
@@ -32,7 +49,16 @@
             }
         </script>
     </head>
-    <body onload="run();">
-        <img id="background" alt="background" src="" />
+    <body onload="run();" >
+        
+        <div class="container" style="z-index:1;">	
+            <select id="cd-dropdown" class="cd-select" >
+                <option value="-1" selected>Click me</option>
+                <option value="1" class="icon-sina-weibo">花田土著</option>
+                <option value="2" class="icon-mail4">red.model@163.com</option>
+                <option value="3" class="icon-github">chenhongen</option>
+            </select>
+		</div><!-- /container -->
+        <img id="background" alt="" src="" />
     </body>
 </html>
