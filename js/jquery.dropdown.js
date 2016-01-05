@@ -149,7 +149,8 @@
 					self.close();
 				}
 			} );
-
+			// 默认展开
+			this.open();
 		},
 		open : function() {
 			var self = this;
