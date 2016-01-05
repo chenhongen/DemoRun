@@ -42,7 +42,9 @@ a {
 
 .container {
 	width: 100%;
-	position: relative;
+	z-index:1;
+	position:absolute;
+	top:10px;
 }
 
 @media screen and (max-width: 730px){
