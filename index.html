@@ -14,8 +14,22 @@
             img {
                 width: 100%;
                 height: 100%;
-				z-index:-999;
+				z-index:-998;
             }
+
+			.polyline {
+			  fill:white;stroke:#eee;stroke-width:20;
+			  stroke-dasharray: 800;
+			  stroke-dashoffset: 800;
+			  animation: dash 6s linear forwards;
+			  fill-opacity:0;
+			}
+
+			@keyframes dash {
+			  to {
+				stroke-dashoffset: 0;
+			  }
+			}
         </style>
         <link rel="stylesheet" type="text/css" href="css/style2.css" />
         <script src="js/rainyday.min.js"></script>
@@ -60,7 +74,7 @@
         </script>
     </head>
     <body>
-        <div style="z-index:-999;">	<img id="background" alt="" src="http://www.dujin.org/sys/bing/1920.php" /></div>
+        <div>	<img id="background" alt="" src="http://www.dujin.org/sys/bing/1920.php" /></div>
         <div class="container">	
             <select id="cd-dropdown" class="cd-select" >
                 <option value="-1" selected>Click me</option>
@@ -68,7 +82,17 @@
                 <option value="2" class="icon-mail4">red.model@163.com</option>
                 <option value="3" class="icon-github">chenhongen</option>
             </select>
+
+			<svg width="100%" height="600" viewBox="-200 -600 1200 1200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<polyline points="200,0 0,200 200,400" class="polyline"/>
+
+				<polyline points="250,0 250,200 450,200 600,400" class="polyline"/>
+				<polyline points="600,0 450,200 250,200 250,400" class="polyline"/>
+
+				<polyline points="650,0 500,200 650,400" class="polyline"/>
+				<polyline points="650,200 510,200" class="polyline"/>
+			</svg>
 		</div>
-        
+		
     </body>
 </html>
