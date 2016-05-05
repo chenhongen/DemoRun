@@ -46,7 +46,7 @@ a:hover {
     backface-visibility: hidden;
     background-color: #348cb2;
 	background-color: black;
-    background-image: url("bg.jpg");
+    background-image: url("img/bg.jpg");
     background-position: left bottom;
     background-repeat: repeat-x;
     height: 100%;
