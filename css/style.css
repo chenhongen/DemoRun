@@ -1,0 +1,152 @@
+
+body, input, select, textarea {
+    color: white;
+    font-family: "Source Sans Pro",sans-serif;
+    font-size: 15pt;
+    font-weight: 300 !important;
+    letter-spacing: -0.025em;
+    line-height: 1.75em;
+}
+body {
+    background: white none repeat scroll 0 0;
+    overflow: hidden;
+}
+body.loading * {
+    animation: 0s ease 0s normal none 1 running none !important;
+}
+a {
+    border-bottom: 1px dotted;
+    color: inherit;
+    outline: 0 none;
+    text-decoration: none;
+    transition: border-color 0.2s ease-in-out 0s;
+}
+a:hover {
+    border-color: transparent;
+}
+@keyframes wrapper {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+#wrapper {
+    animation: 3s ease 0s normal forwards 1 running wrapper;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+#bg {
+    animation: 60s linear 0s normal none infinite running bg;
+    backface-visibility: hidden;
+    background-color: #348cb2;
+	background-color: black;
+    background-image: url("bg.jpg");
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    height: 100%;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    transform: translate3d(0px, 0px, 0px);
+}
+@keyframes bg {
+	0% {
+		transform: translate3d(0px, 0px, 0px);
+	}
+	100% {
+		transform: translate3d(-2250px, 0px, 0px);
+	}
+}
+@-ms-keyframes bg {
+	0% {
+		transform: translate3d(0px, 0px, 0px);
+	}
+	100% {
+		transform: translate3d(-2250px, 0px, 0px);
+	}
+}
+@-moz-keyframes bg {
+	0% {
+		transform: translate3d(0px, 0px, 0px);
+	}
+	100% {
+		transform: translate3d(-2250px, 0px, 0px);
+	}
+}
+@-webkit-keyframes bg {
+	0% {
+		transform: translate3d(0px, 0px, 0px);
+	}
+	100% {
+		transform: translate3d(-2250px, 0px, 0px);
+	}
+}
+#bg {
+    background-size: 2250px auto;
+    width: 6750px;
+}
+#main {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+#main::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    margin-right: 0;
+    vertical-align: middle;
+    width: 1px;
+}
+@keyframes header {
+	0% {
+		opacity: 0;
+		transform: translate3d(0px, 1em, 0px);
+	}
+	100% {
+		opacity: 1;
+		transform: translate3d(0px, 0px, 0px);
+	}
+}
+@keyframes nav-icons {
+	0% {
+		opacity: 0;
+		transform: translate3d(0px, 1em, 0px);
+	}
+	100% {
+		opacity: 1;
+		transform: translate3d(0px, 0px, 0px);
+	}
+}
+#header {
+    animation: 1s ease 2.25s normal forwards 1 running header;
+    backface-visibility: hidden;
+    cursor: default;
+    display: inline-block;
+    opacity: 0;
+    position: relative;
+    text-align: center;
+    top: -1em;
+    transform: translate3d(0px, 0px, 0px);
+    vertical-align: middle;
+    width: 90%;
+}
+#header h2 {
+    font-size: 3.5em;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+	opacity: 0.75;
+}
+#header img {
+    opacity: 0.75;
+}

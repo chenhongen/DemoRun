@@ -3,96 +3,19 @@
     <head>
         <meta charset="utf-8">
         <title>welcome to che</title>
-        <style media="screen">
-            body {
-                overflow: hidden;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
-				z-index:-998;
-            }
-
-			.polyline {
-			  fill:white;stroke:#111;stroke-width:20;
-			  stroke-dasharray: 800;
-			  stroke-dashoffset: 800;
-			  animation: dash 6s linear forwards;
-			  fill-opacity:0;
-			}
-
-			@keyframes dash {
-			  to {
-				stroke-dashoffset: 0;
-			  }
-			}
-        </style>
-        <link rel="stylesheet" type="text/css" href="css/style2.css" />
-        <script src="js/rainyday.min.js"></script>
-        <script src="js/modernizr.custom.63321.js"></script>
-        <script src="js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery.dropdown.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500052254"></script>
-		<script type="text/javascript">
-			
-			$( function() {
-				var temp = $( '#cd-dropdown' );
-				$( '#cd-dropdown' ).dropdown( {
-					gutter : 5,
-					delay : 100,
-					random : true
-				} );
-
-				//run();
-			});
-
-			// 输出对象键值对
-			function po(obj){
-				var temp = "";
-				for(var i in obj){//用javascript的for/in循环遍历对象的属性
-					temp += i+":"+obj[i]+"\n";
-				}
-				alert(temp);
-			}
-
-            function run() {
-                var image = document.getElementById('background');
-                image.onload = function() {
-                    var engine = new RainyDay({
-                        image: this
-                    });
-                    engine.rain([ [1, 2, 8000] ]);
-                    engine.rain([ [3, 3, 0.88], [5, 5, 0.9], [6, 2, 1] ], 100);
-                };
-                image.crossOrigin = 'anonymous';
-                //image.src = 'http://www.dujin.org/sys/bing/1920.php';
-            }
-        </script>
-    </head>
+	</head>
     <body>
-        <div>	<img id="background" alt="" src="http://www.dujin.org/sys/bing/1920.php" /></div>
-        <div class="container">	
-            <select id="cd-dropdown" class="cd-select" >
-                <option value="-1" selected>Click me</option>
-                <option value="1" class="icon-sina-weibo">花田土著</option>
-                <option value="2" class="icon-mail4">red.model@163.com</option>
-                <option value="3" class="icon-github">chenhongen</option>
-            </select>
-
-			<svg width="100%" height="600" viewBox="-200 -600 1200 1200" version="1.1" xmlns="http://www.w3.org/2000/svg">
-				<polyline points="200,0 0,200 200,400" class="polyline"/>
-
-				<polyline points="250,0 250,200 450,200 600,400" class="polyline"/>
-				<polyline points="600,0 450,200 250,200 250,400" class="polyline"/>
-
-				<polyline points="650,0 500,200 650,400" class="polyline"/>
-				<polyline points="650,200 510,200" class="polyline"/>
-			</svg>
+       <div id="wrapper">
+		<div id="bg"></div>
+		<div id="main">
+			<header id="header">
+				<!--<h1>我</h1>-->
+				<img src="me.png"/>
+				<h2>就是青春</h2>
+			</header>
 		</div>
-		
+	</div>
     </body>
 </html>
