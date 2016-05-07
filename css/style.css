@@ -68,8 +68,7 @@ a:hover {
 	-o-transform: translate3d(0,0,0);
 	-ms-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-    background-color: #348cb2;
-	background-color: black;
+    background-color: #C0D2E8;
     background-image: url("../img/bg.jpg");
     background-position: left bottom;
     background-repeat: repeat-x;
@@ -86,8 +85,8 @@ a:hover {
 @keyframes bg { 0% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); } 100% { -moz-transform: translate3d(-1300px,0,0); -webkit-transform: translate3d(-1300px,0,0); -o-transform: translate3d(-1300px,0,0); -ms-transform: translate3d(-1300px,0,0); transform: translate3d(-1300px,0,0); } }
 
 #bg {
-    background-size: 1600px auto;
-		width: 5000px;
+    background-size: 2000px auto;
+	width: 5000px;
 }
 #main {
     height: 100%;
