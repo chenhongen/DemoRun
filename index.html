@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="global wide">
     <head>
         <meta charset="utf-8">
         <title>welcome to che</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/pace-theme-barber-shop.css">
+		<script src="js/pace.min.js"></script>
+		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500052254"></script>
+		<script>
+			/** 加载完成后 **/
+			Pace.on('hide', function(){
+			  $(".pace").fadeOut(3000);
+			});
+		</script>
 	</head>
     <body>
        <div id="wrapper">
 		<div id="bg"></div>
+		<div id="overlay"></div>
 		<div id="main">
 			<header id="header">
-				<!--<h1>我</h1>-->
 				<img src="img/me.png"/>
 				<h2>就是青春</h2>
 			</header>
