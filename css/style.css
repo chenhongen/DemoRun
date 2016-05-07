@@ -88,7 +88,7 @@ a:hover {
     background-size: 1800px auto;
 	width: 5000px;
 }
-@media (min-device-width : 200px) and (max-device-width : 700px){
+@media (min-device-width : 100px) and (max-device-width : 700px){
 	background-size: 3000px auto;
 	width: 5000px; }
 #main {
