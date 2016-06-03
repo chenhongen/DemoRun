@@ -20,13 +20,16 @@
 					$("#audio-pause").hide();
 					document.getElementById('audio-core').pause();
 				});
+				$('html').one('touchstart',function(){
+					if (document.getElementById('audio-core').paused) { //判读是否播放
+						document.getElementById('audio-core').play();
+					}
+				})
 			});
 			/** 加载完成后 **/
 			Pace.on('hide', function(){
 			  $(".pace").fadeOut(3000);
-			  if (document.getElementById('audio-core').paused) { //判读是否播放
-				document.getElementById('audio-core').play();
-			  }
+			  
 			});
 
 		</script>
