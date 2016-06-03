@@ -24,17 +24,20 @@
 			/** 加载完成后 **/
 			Pace.on('hide', function(){
 			  $(".pace").fadeOut(3000);
+			  if (document.getElementById('audio-core').paused) { //判读是否播放
+				document.getElementById('audio-core').play();
+			  }
 			});
 
 		</script>
 	</head>
     <body>
        <div id="wrapper">
-		<div class="lg-trailer" style="left:90%; width: 30px; height: 30px; top: 20px;">
-			<div class="lg-component-audio" style="width: 30px; height: 30px;">
+		<div class="lg-trailer" style="left:90%; width: 40px; height: 40px; top: 20px;">
+			<div class="lg-component-audio" style="width: 40px; height: 40px;">
 				<div class="lg-component-audio-play" id="audio-play" style="background-image: url(img/pause.png); display: none;"></div>
 				<div class="lg-component-audio-pause" id="audio-pause" style="background-image: url(img/play.png); display: block;"></div>
-				<audio class="lg-component-audio-core" id="audio-core" autoplay="autoplay" src="http://boscdn.bpc.baidu.com/v1/legend/1461756359869.990965.石进 - 夜的钢琴曲十三.mp3" loop="loop"></audio>
+				<audio class="lg-component-audio-core" id="audio-core" preload="auto" src="http://boscdn.bpc.baidu.com/v1/legend/1460424294016.453964.纯音乐-Reason(韩剧《蓝色生死恋》插曲).mp3" loop="loop"></audio>
 			</div>
 		</div>
 		<div id="bg"></div>
