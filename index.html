@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <title>CHE Studio</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/demo.css" type="text/css" />
 </head>
@@ -20,15 +21,19 @@
 						<li>
 							<a href="http://chenhongen.github.io/MergeCells/">MergeCell Demo</a>
 						</li>
-						<li>
-							<a href="javascript:;">building...</a>
-						</li>
 					</ul>
 				</li>
 				<li>
 					<a href="https://segmentfault.com/u/che/articles">SegmentFault</a>
 				</li>
-				
+				<li class="sub_menu opened">
+					<a href="javascript:;">Js Demo</a>
+					<ul id="jsUlItem"> </ul>
+				</li>
+				<li class="sub_menu opened">
+					<a href="javascript:;">Css Demo</a>
+					<ul id="cssUlItem"> </ul>
+				</li>
 			</ul>
 		</nav>
 	</div>
@@ -42,6 +47,7 @@
 		<li><a href="#jsTab" data-toggle="tab">JavaScript</a></li>
 		<li><a href="#cssTab" data-toggle="tab">CSS</a></li>
 		<li><button class="btn btn-default btn-primary" type="submit" onclick="run()">Run</button></li>
+		<li><button class="btn btn-default btn-success" type="submit" onclick="save()">Save</button></li>
 		<li><button class="btn btn-default btn-info" type="submit" data-toggle="modal" data-target="#saveModal">About</button></li>
 	</ul>
 	<div id="myTabContent" class="tab-content">
@@ -55,7 +61,7 @@
 			<pre id='cssEditor'> </pre>
 		</div>
 		<div id="resTab" class="">
-			<iframe name="iframe" class="iframe" id="iframe" sandbox="allow-forms allow-popups allow-scripts allow-same-origin allow-modals" name="iframe" frameborder="0"></iframe>
+			<iframe name="iframe" class="iframe" id="iframe" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-forms" allowfullscreen="true" scrolling="yes" allowtransparency="true" name="iframe" frameborder="0" scr="iframe.html"></iframe>
 		</div>
     </div>
 
@@ -70,35 +76,19 @@
 					  &times;
 				</button>
 				<h4 class="modal-title" id="">
-				   Save code
+				   About Web
 				</h4>
 			 </div>
 			 <div class="modal-body">
-				<!--<form role="form">
-				   <div class="form-group">
-					  <label for="fileName">Name</label>
-					  <input type="text" class="form-control" id="fileName" 
-						 placeholder="请输入名称">
-				   </div>
-				   <div class="form-group">
-					  <label for="fileType">Sort</label>
-					  <select class="form-control" id="fileType">
-						<option>html</option>
-						<option>css</option>
-						<option>js</option>
-						<option>other</option>
-					  </select>
-				   </div>
-				</form>-->
-				QQ:251601797
+				<h3>Show your amazing code on the web!</h3>
+				<p><b>Run button:</b> running your code in my webEditor.</p>
+				<p><b>Save button:</b> to get formatted datas that will be used in my json file.</p>
+				<p><b>Contact:</b> 251601797@qq.com</p>
 			 </div>
 			 <div class="modal-footer">
 				<button type="button" class="btn btn-default" 
 				   data-dismiss="modal">close
 				</button>
-				<!--<button type="button" class="btn btn-primary" onclick="save()">
-				   ok
-				</button>-->
 			 </div>
 		  </div><!-- /.modal-content -->
 	</div><!-- /.modal -->
@@ -108,10 +98,13 @@
 <script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/modal.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/menu.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/util.js" type="text/javascript" charset="utf-8"></script>
 <script src="build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500052254"></script>
 <script>
+	// 网站域名
+	var CNAME = "http://rebey.cn/";
+	// ace编辑器初始化
     var htmlEditor = ace.edit("htmlEditor");
 	htmlEditor.setTheme("ace/theme/monokai");
 	htmlEditor.getSession().setMode("ace/mode/html");
@@ -122,27 +115,70 @@
 	jsEditor.setTheme("ace/theme/monokai");
 	jsEditor.getSession().setMode("ace/mode/javascript");
 	
+	// 初始化：ace初始化；菜单初始化；
 	$(function() {
-		htmlEditor.setValue(datas[0].html);
-		cssEditor.setValue(datas[0].css);
-		jsEditor.setValue(datas[0].js);
+		//使用getJSON方法读取json数据
+		$.getJSON("_post/CSS loader.json",function(data){
+			htmlEditor.setValue(formatCodeIn(data.html));
+			cssEditor.setValue(formatCodeIn(data.css));
+			jsEditor.setValue(formatCodeIn(data.js));
+		});
+
+		$.getJSON("_post/catalog.json",function(data){
+			$.each(data.jsDemo, function(i, item) {
+				addLiItem($("#jsUlItem"), item.name);
+			});
+
+			$.each(data.cssDemo, function(i, item) {
+				addLiItem($("#cssUlItem"), item.name);
+			});
+
+			// 绑定文章切换事件
+			$('.a_title').click(function(event){
+				var target = event.srcElement || event.target;
+				changeTo(target.text);
+			});
+
+			run();
+		});
 	});
 
+	// tab事件绑定
 	$('#myTab a').click(function (e) {
 		e.preventDefault()
 		$(this).tab('show')
 	});
 
+	// 运行代码
 	function run() {
 		var html = htmlEditor.getValue();
 		var css = '<style>'+cssEditor.getValue()+'</style>';
-		var js = jsEditor.getValue();
-		var iframe = document.getElementsByTagName('iframe')[0].contentWindow;
-		iframe.document.getElementsByTagName('body')[0].innerHTML=(html+css);
-		window.frames['iframe'].eval(js);
+		var js = '<script>'+jsEditor.getValue()+'</script'+'>';
+		var ifr = document.getElementById('iframe');
+		//var win = ifr.window || ifr.contentWindow;
+		
+		ifr.srcdoc = css+html+js;
+		//win.document.getElementsByTagName('body')[0].innerHTML=(js);
+		//win.eval(jsEditor.getValue());
 	}
 
+	// json存储格式转换
 	function save() {
+		formatCodeOut(jsEditor.getValue());
+		formatCodeOut(cssEditor.getValue());
+		formatCodeOut(htmlEditor.getValue());
+	}
+
+	// 文章切换函数
+	function changeTo(name) {
+		$.getJSON("_post/"+name+".json",function(data){
+			htmlEditor.setValue(formatCodeIn(data.html));
+			cssEditor.setValue(formatCodeIn(data.css));
+			jsEditor.setValue(formatCodeIn(data.js));
+			// 隐藏弹出菜单层
+			$(".overlay").trigger("click");
+			run();
+		});
 	}
 
 	//documentation menu
@@ -152,14 +188,6 @@
 		return false;
 	})
 
-	// 输出对象键值对
-	function po(obj){
-		var temp = "";
-		for(var i in obj){//用javascript的for/in循环遍历对象的属性
-			temp += i+":"+obj[i]+"\n";
-		}
-		alert(temp);
-	}
 </script>
 </body>
 </html>
