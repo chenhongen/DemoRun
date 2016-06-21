@@ -137,6 +137,7 @@ ul, li, p {
     font-size: 1.71429em;
     line-height: 2em;
     margin-bottom: 1em;
+	text-align:center;
 }
 @media all and (max-width: 767px) {
 .doc_menu_title {
@@ -231,14 +232,15 @@ ul, li, p {
 	}
 }
 
-.author-img {
-    background: rgba(0, 0, 0, 0) url("https://sfault-avatar.b0.upaiyun.com/235/768/2357689220-5687deedc4208_huge256") no-repeat scroll left top / 6.875em 6.875em;
+.author_img {
+    background: rgba(0, 0, 0, 0) url("../image/author.jpg") no-repeat scroll left top / 6.875em 6.875em;
     border-radius: 3.4375em;
     height: 6.875em;
     margin: 0 auto;
     transition: transform 2s ease-out 0s;
     width: 6.875em;
+	color:red;
 }
-.author-img:hover {
-    transform: rotateZ(360deg);
+.author_img:hover {
+	transform: rotateZ(360deg);
 }
