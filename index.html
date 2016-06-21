@@ -118,13 +118,13 @@
 	// 初始化：ace初始化；菜单初始化；
 	$(function() {
 		//使用getJSON方法读取json数据
-		$.getJSON("_post/CSS loader.json",function(data){
+		$.getJSON(CNAME+"post/CSS loader.json",function(data){
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
 			jsEditor.setValue(formatCodeIn(data.js));
 		});
 
-		$.getJSON("_post/catalog.json",function(data){
+		$.getJSON(CNAME+"post/catalog.json",function(data){
 			$.each(data.jsDemo, function(i, item) {
 				addLiItem($("#jsUlItem"), item.name);
 			});
