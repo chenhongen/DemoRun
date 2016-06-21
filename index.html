@@ -171,7 +171,7 @@
 
 	// 文章切换函数
 	function changeTo(name) {
-		$.getJSON("_post/"+name+".json",function(data){
+		$.getJSON("post/"+name+".json",function(data){
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
 			jsEditor.setValue(formatCodeIn(data.js));
