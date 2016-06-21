@@ -2,7 +2,7 @@
 /** popup-left-menu **/
 html { overflow-y: scroll; }
 
-.menubtn:hover, .openmenu .menubtn {
+.expend-iframe:hover,.menubtn:hover, .openmenu .menubtn {
   color: #aaa;
 }
 
@@ -198,4 +198,47 @@ ul, li, p {
 }
 .nav-tabs > li > button {
 	margin:3px 8px;
+}
+.expend-iframe {
+	position:fixed;
+	margin-top:60px;
+	right:1.2em;
+	z-index:2;
+	animation: rotate 10000ms infinite linear;
+}
+@-moz-keyframes rotate{
+	0%{
+	  -moz-transform:rotate(0deg);
+	}
+	100%{
+	   -moz-transform:rotate(360deg);
+	}
+	}
+	@-webkit-keyframes rotate{
+	0%{
+	  -webkit-transform:rotate(0deg);
+	}
+	100%{
+	   -webkit-transform:rotate(360deg);
+	}
+	}
+	@keyframes rotate{
+	0%{
+	  transform:rotate(0deg);
+	}
+	100%{
+	   transform:rotate(360deg);
+	}
+}
+
+.author-img {
+    background: rgba(0, 0, 0, 0) url("https://sfault-avatar.b0.upaiyun.com/235/768/2357689220-5687deedc4208_huge256") no-repeat scroll left top / 6.875em 6.875em;
+    border-radius: 3.4375em;
+    height: 6.875em;
+    margin: 0 auto;
+    transition: transform 2s ease-out 0s;
+    width: 6.875em;
+}
+.author-img:hover {
+    transform: rotateZ(360deg);
 }
