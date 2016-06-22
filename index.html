@@ -49,7 +49,7 @@
 		<li class="active"><a href="#htmlTab" data-toggle="tab">HTML</a></li>
 		<li><a href="#jsTab" data-toggle="tab">JavaScript</a></li>
 		<li><a href="#cssTab" data-toggle="tab">CSS</a></li>
-		<li></li>
+		<li><a href="#aboutTab" data-toggle="tab">About</a></li>
 		<!--<li><button class="btn btn-default btn-success" type="submit" onclick="save()">Save</button></li>-->
 		<div class="right_menu">
 			<button class="btn btn-default btn-primary" type="submit" onclick="run()">&nbsp;Run&nbsp;</button>
@@ -69,6 +69,17 @@
 		</div>
 		<div id="cssTab" class="tab-pane">
 			<pre id='cssEditor'> </pre>
+		</div>
+		<div id="aboutTab" class="tab-pane">
+			<div class="tab-pane-div"><h3>Show your amazing code on the web!</h3>
+			<p><b>Run button:</b> running your code in my webEditor.</p>
+			<p><b>Comment button:</b> speaking out your opinions.</p>
+			<p><b>Support browser:</b> Firefox|Chrome|Safari|IE?</p>
+			<p><b>Contact me:</b> 251601797@qq.com</p>
+			<p><b>My WeChat Public  && Donate:</b><hr/>
+			<img src="image/rb.jpg" />
+			<img src="image/donate.png" /><hr/>
+			<p><b>Thanks for:</b> github|ace.js|duoshuo.com|and so on.</p></div>
 		</div>
 		<div id="resTab" class="">
 			<iframe name="iframe" class="iframe" id="iframe" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-forms" allowfullscreen="true" scrolling="yes" allowtransparency="true" name="iframe" frameborder="0" scr="iframe.html"></iframe>
@@ -100,28 +111,23 @@
 	</div><!-- /.modal -->
 
 </div>	
-</div>	
-
-<!--<div style="position:absolute;bottom:0;width:100%;height:200px;display:block;z-index:3;background:blue;">
-	<h3>Show your amazing code on the web!</h3>
-	<p><b>Run button:</b> running your code in my webEditor.</p>
-	<p><b>Save button:</b> to get formatted datas that will be used in my json file.</p>
-	<p><b>Support browser:</b> Firefox|Chrome|Safari|IE?</p>
-	<p><b>Contact:</b> 251601797@qq.com</p>
-</div>-->
+</div>
 <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/modal.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/menu.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/util.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/confirm.js" type="text/javascript" charset="utf-8"></script>
 <script src="build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="http://pingjs.qq.com/h5/stats.js" name="MTAH5" sid="500052254"></script>
-<script src="http://static.duoshuo.com/embed.js"></script>
+<script src="js/ds-embed.js"></script>
 <script>var duoshuoQuery = {short_name:"rebey"};</script>
 <script>
 	
 	// 网站域名
 	var CNAME = "http://rebey.cn/";
+	// bing comment article
+	var article = "CSS loader";
 	// ace编辑器初始化
     var htmlEditor = ace.edit("htmlEditor");
 	htmlEditor.setTheme("ace/theme/monokai");
@@ -191,6 +197,7 @@
 
 	// 文章切换函数
 	function changeTo(name) {
+		article = name;
 		$.getJSON("post/"+name+".json",function(data){
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
@@ -215,15 +222,11 @@
 		$(this).toggleClass("glyphicon-resize-full").toggleClass("glyphicon-resize-small");
 	});
 
-	// 0622网站升级计划：
-	// 评论建设：替换about按钮为comment
-	// 将原about内容移至页脚左大半侧，同时右侧加入微信公众号二维码与捐赠二维码
-
 	// duoshuo
 	$('#commModal').on('shown.bs.modal', function () {
 		$("#comment-box").empty();
 		var el = document.createElement('div');//该div不需要设置class="ds-thread"
-		el.setAttribute('data-thread-key', 'CSS loader');//必选参数
+		el.setAttribute('data-thread-key', article);//必选参数
 		el.setAttribute('data-url', 'rebey.cn');//必选参数
 		//el.setAttribute('data-author-key', '作者的本地用户ID');//可选参数
 		DUOSHUO.EmbedThread(el);

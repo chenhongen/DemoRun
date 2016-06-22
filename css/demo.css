@@ -171,6 +171,25 @@ ul, li, p {
 	z-index: 0;
 	float:left;
 }
+.tab-pane-div {
+	position: absolute;
+	left: 0;
+	top:40px;
+	width:50%;
+	height:100%;
+	background:#272822;
+	color:#ddd;
+	padding:10px 40px;
+}
+.tab-pane-div h3 {
+	color:#fff;
+}
+.tab-pane-div img {
+	text-align:center;
+	padding-right:10px;
+	margin:0 auto;
+	width:40%;
+}
 .active {
 	z-index: 1;
 }
