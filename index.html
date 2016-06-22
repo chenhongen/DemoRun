@@ -53,7 +53,7 @@
 		<!--<li><button class="btn btn-default btn-success" type="submit" onclick="save()">Save</button></li>-->
 		<div class="right_menu">
 			<button class="btn btn-default btn-primary" type="submit" onclick="run()">&nbsp;Run&nbsp;</button>
-			<button class="btn btn-default btn-info" type="submit" data-toggle="modal" data-target="#commModal">Commit</button>
+			<button class="btn btn-default btn-info" type="submit" data-toggle="modal" data-target="#commModal">Comment</button>
 		</div>
 	</ul>
 	<!-- iframe expand begin -->
@@ -231,7 +231,14 @@
 		//el.setAttribute('data-author-key', '作者的本地用户ID');//可选参数
 		DUOSHUO.EmbedThread(el);
 		$("#comment-box").append(el);
-	})
+		
+	});
+
+	/*$(".ds-post-button").bind("click", function() {
+		po($("#ds-dialog-name"));
+		$("#ds-dialog-name").enable();
+	});*/
+
 </script>
 </body>
 </html>
