@@ -180,6 +180,7 @@ ul, li, p {
 	background:#272822;
 	color:#ddd;
 	padding:10px 40px;
+	overflow: hidden;
 }
 .tab-pane-div h3 {
 	color:#fff;
