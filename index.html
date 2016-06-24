@@ -167,7 +167,9 @@
 			});
 		});
 
+		// alt+r:run
         $(document).keyup(function(e){
+			e.altKey && e.keyCode === 82 && run();
         }); 
 	});
 
