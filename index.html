@@ -50,6 +50,23 @@
 		<li><a href="#jsTab" data-toggle="tab">JavaScript</a></li>
 		<li><a href="#cssTab" data-toggle="tab">CSS</a></li>
 		<li><a href="#aboutTab" data-toggle="tab">About</a></li>
+		<li>
+			<div id="jq-dropdown" class="dropdown">
+			  <div class="btn-group">
+			  <a class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+				<!--选中option之后，要在这里显示选中值，类似原始select里面的文本框-->    
+				<span id="jsVer" class="placeholder">1.8.3</span>
+				<span class="caret"></span>
+			  </a>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			    <li role="presentation" class="dropdown-header">JQuery Version:</li>
+				<li role="presentation" value="1"><a role="menuitem" tabindex="1" href="#">1.7.2</a></li>
+				<li role="presentation" value="2"><a role="menuitem" tabindex="2" href="#">1.9.1</a></li>
+				<li role="presentation" value="3"><a role="menuitem" tabindex="3" href="#">2.1.4</a></li>
+			  </ul>
+			  </div>
+			</div>
+		</li>
 		<!--<li><button class="btn btn-default btn-success" type="submit" onclick="save()">Save</button></li>-->
 		<div class="right_menu">
 			<button id="runBtn" class="btn btn-default btn-primary" type="submit" onclick="run()">Run<i>[Alt+r]</i></button>
@@ -116,6 +133,7 @@
 <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/modal.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/dropdown.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/menu.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/util.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/confirm.js" type="text/javascript" charset="utf-8"></script>
@@ -171,6 +189,9 @@
         $(document).keydown(function(e){
 			e.altKey && e.keyCode === 82 && run();
         }); 
+
+		// dropmenu rewrite for jq exchange
+		new customDropDown($("#jq-dropdown"));
 	});
 
 	// tab事件绑定
@@ -188,10 +209,10 @@
 		var win = ifr.window || ifr.contentWindow;
 
 		// built-in JQ
-		var jqVer = "";
+		var jqVer = $("#jsVer").html();
 		var oScript= document.createElement("script");
 		oScript.type = "text/javascript";
-		oScript.src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js";
+		oScript.src="http://libs.baidu.com/jquery/"+jqVer+"/jquery.min.js";
 		win.document.getElementsByTagName('head')[0].appendChild(oScript);
 
 		win.document.getElementsByTagName('body')[0].innerHTML=(css+html);

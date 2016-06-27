@@ -274,3 +274,11 @@ ul, li, p {
 .right_menu button {
 	margin-right:0.2em;
 }
+/*dropmenu*/
+.btn-group.open .dropdown-toggle {
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+#jq-dropdown {
+	margin-top:0.25em;
+}
