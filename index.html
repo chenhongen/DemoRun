@@ -185,9 +185,17 @@
 		var css = '<style>'+cssEditor.getValue()+'</style>';
 		var js = '<script>'+jsEditor.getValue()+'</script'+'>';
 		var ifr = document.getElementById('iframe');
-
 		var win = ifr.window || ifr.contentWindow;
+
+		// built-in JQ
+		var jqVer = "";
+		var oScript= document.createElement("script");
+		oScript.type = "text/javascript";
+		oScript.src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js";
+		win.document.getElementsByTagName('head')[0].appendChild(oScript);
+
 		win.document.getElementsByTagName('body')[0].innerHTML=(css+html);
+
 		win.eval(jsEditor.getValue());
 		// 支持html书写script
 		if(html.indexOf('<\/script>') > -1) {
