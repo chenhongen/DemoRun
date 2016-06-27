@@ -189,8 +189,12 @@
 		var win = ifr.window || ifr.contentWindow;
 		win.document.getElementsByTagName('body')[0].innerHTML=(css+html);
 		win.eval(jsEditor.getValue());
-
+		// 支持html书写script
+		if(html.indexOf('<\/script>') > -1) {
+			win.eval(html.split("<script")[1].split(">")[1].split('<\/script')[0]);
+		}
 		//ifr.srcdoc = css+html+js; // 此方法IE失效
+		
 	}
 
 	// json存储格式转换
