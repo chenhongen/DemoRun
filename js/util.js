@@ -13,7 +13,8 @@ function addLiItem(ulItem, name) {
 function formatCodeOut(code) {
 	var saveStrN = "\n";
 	var saveStrQ = "\"";
-	alert(code.replace(new RegExp(saveStrN,'gm'),'-N-').replace(new RegExp(saveStrQ,'gm'),'-Q-'));
+	var saveStrT = "\t";
+	alert(code.replace(new RegExp(saveStrN,'gm'),'-N-').replace(new RegExp(saveStrQ,'gm'),'-Q-').replace(new RegExp(saveStrT,'gm'),'-T-'));
 }
 
 /**
@@ -24,7 +25,8 @@ function formatCodeOut(code) {
 function formatCodeIn(code) {
 	var saveStrN = '-N-';
 	var saveStrQ = '-Q-';
-	return code.replace(new RegExp(saveStrN,'gm'),"\n").replace(new RegExp(saveStrQ,'gm'),"\"")
+	var saveStrT = '-T-';
+	return code.replace(new RegExp(saveStrN,'gm'),"\n").replace(new RegExp(saveStrQ,'gm'),"\"").replace(new RegExp(saveStrT,'gm'),"\t");
 }
 
 
