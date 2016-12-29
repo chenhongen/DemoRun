@@ -165,10 +165,10 @@
 
 		// link with param
 		if(document.location.hash.indexOf("#") > -1) {
-			post = document.location.hash.split("#")[1];
+			position = document.location.hash.split("#")[1];
 		}
 		// default demo in index:
-		$.getJSON(CNAME + "post/" + post + ".json", function(data) {
+		$.getJSON(CNAME + "post/" + position + ".json", function(data) {
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
 			jsEditor.setValue(formatCodeIn(data.js));
