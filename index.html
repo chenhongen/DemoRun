@@ -147,25 +147,24 @@
 <script src="js/ds-embed.js"></script>
 <script>
 	
-	// 网站域名
-	var CNAME = "http://demo.rebey.cn/";
-	// bing comment article
-	var article = "CSS loader";
-	// ace编辑器初始化
-    var htmlEditor = ace.edit("htmlEditor");
-	htmlEditor.setTheme("ace/theme/monokai");
-	htmlEditor.getSession().setMode("ace/mode/html");
-	var cssEditor = ace.edit("cssEditor");
-	cssEditor.setTheme("ace/theme/monokai");
-	cssEditor.getSession().setMode("ace/mode/css");
-	var jsEditor = ace.edit("jsEditor");
-	jsEditor.setTheme("ace/theme/monokai");
-	jsEditor.getSession().setMode("ace/mode/javascript");
-	
-	// 初始化：ace初始化；菜单初始化；
+	var CNAME = "http://demo.rebey.cn/",								// my web domain name
+		ARTICLE = "CSS loader",											// bind comment article
+		htmlEditor = ace.edit("htmlEditor"),							// ace editor init
+		cssEditor = ace.edit("cssEditor"),
+		jsEditor = ace.edit("jsEditor");
+
+
 	$(function() {
-		//使用getJSON方法读取json数据
-		$.getJSON(CNAME+"post/CSS3全屏滚动.json",function(data){
+		// ace
+		htmlEditor.setTheme("ace/theme/monokai");
+		htmlEditor.getSession().setMode("ace/mode/html");
+		cssEditor.setTheme("ace/theme/monokai");
+		cssEditor.getSession().setMode("ace/mode/css");
+		jsEditor.setTheme("ace/theme/monokai");
+		jsEditor.getSession().setMode("ace/mode/javascript");
+
+		// default demo in index:
+		$.getJSON(CNAME + "post/CSS3全屏滚动.json", function(data) {
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
 			jsEditor.setValue(formatCodeIn(data.js));
@@ -173,23 +172,27 @@
 			run();
 		});
 
-		$.getJSON(CNAME+"post/catalog.json",function(data){
+		// catalog init
+		$.getJSON(CNAME + "post/catalog.json", function(data) {
+			// set my js demo 
+			var jsUlItem = $("#jsUlItem");
 			$.each(data.jsDemo, function(i, item) {
-				addLiItem($("#jsUlItem"), item.name);
+				addLiItem(jsUlItem, item.name);
 			});
-
+			// set my css demo
+			var cssUlItem = $("#cssUlItem");
 			$.each(data.cssDemo, function(i, item) {
-				addLiItem($("#cssUlItem"), item.name);
+				addLiItem(cssUlItem, item.name);
 			});
 
-			// 绑定文章切换事件
+			// bind article changed event
 			$('.a_title').click(function(event){
 				var target = event.srcElement || event.target;
 				changeTo(target.text);
 			});
 		});
 
-		// alt+r:run
+		// alt+r: run
         $(document).keydown(function(e){
 			e.altKey && e.keyCode === 82 && run();
         }); 
@@ -198,59 +201,58 @@
 		new customDropDown($("#jq-dropdown"));
 	});
 
-	// tab事件绑定
+	// bind tab click event
 	$('#myTab a').click(function (e) {
-		e.preventDefault()
-		$(this).tab('show')
+		e.preventDefault();
+		$(this).tab('show');
 	});
 
-	// 运行代码
+	// run demo
 	function run() {
-		var html = htmlEditor.getValue();
-		var css = '<style>'+cssEditor.getValue()+'</style>';
-		var js = '<script>'+jsEditor.getValue()+'</script'+'>';
-		var ifr = document.getElementById('iframe');
-		var win = ifr.window || ifr.contentWindow;
+		var html = htmlEditor.getValue(),
+			css = '<style>' + cssEditor.getValue() + '</style>',
+			js = '<script>' + jsEditor.getValue() + '</script' + '>',
+			ifr = document.getElementById('iframe'),
+			win = ifr.window || ifr.contentWindow;
 
 		// built-in JQ
 		var jqVer = $("#jsVer").html();
 		var oScript= document.createElement("script");
 		oScript.type = "text/javascript";
-		oScript.src="http://libs.baidu.com/jquery/"+jqVer+"/jquery.min.js";
+		oScript.src = "http://libs.baidu.com/jquery/" + jqVer + "/jquery.min.js";
 		win.document.getElementsByTagName('head')[0].appendChild(oScript);
 
-		win.document.getElementsByTagName('body')[0].innerHTML=(css+html);
+		win.document.getElementsByTagName('body')[0].innerHTML = (css + html);
 
 		win.eval(jsEditor.getValue());
-		// 支持html书写script
+		// deal with script in html string!
 		if(html.indexOf('<\/script>') > -1) {
 			win.eval(html.split("<script")[1].split(">")[1].split('<\/script')[0]);
 		}
-		//ifr.srcdoc = css+html+js; // 此方法IE失效
-		
+		//ifr.srcdoc = css+html+js; // the way can't work on IE
 	}
 
-	// json存储格式转换
+	// format json to be used
 	function save() {
 		formatCodeOut(jsEditor.getValue());
 		formatCodeOut(cssEditor.getValue());
 		formatCodeOut(htmlEditor.getValue());
 	}
 
-	// 文章切换函数
+	// article change trigger
 	function changeTo(name) {
-		article = name;
-		$.getJSON("post/"+name+".json",function(data){
+		ARTICLE = name;
+		$.getJSON("post/" + name + ".json", function(data){
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
 			jsEditor.setValue(formatCodeIn(data.js));
-			// 隐藏弹出菜单层
+			// hide popup left menu
 			$(".overlay").trigger("click");
 			run();
 		});
 	}
 
-	//documentation menu
+	// documentation menu
 	$('.sub_menu > a').mousedown(function () {
 		$(this).parent().toggleClass('opened');
 		$(window).trigger('resize');
@@ -268,7 +270,7 @@
 	$('#commModal').on('shown.bs.modal', function () {
 		$("#comment-box").empty();
 		var el = document.createElement('div');//该div不需要设置class="ds-thread"
-		el.setAttribute('data-thread-key', article);//必选参数
+		el.setAttribute('data-thread-key', ARTICLE);//必选参数
 		el.setAttribute('data-url', 'rebey.cn');//必选参数
 		//el.setAttribute('data-author-key', '作者的本地用户ID');//可选参数
 		DUOSHUO.EmbedThread(el);
