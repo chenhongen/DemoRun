@@ -39,6 +39,17 @@ function po(obj){
 	alert(temp);
 }
 
+/**
+* 
+**/
+function isEmpty(value) {
+	var flag = false;
+	if(value == null || value === "" || typeof(value) == "undefined" ) {
+		flag = true;
+	}
+	return flag;
+}
+
 // dropmenu for select
 function customDropDown(ele){
 	this.dropdown=ele;

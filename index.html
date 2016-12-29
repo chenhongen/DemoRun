@@ -101,7 +101,6 @@
 			<p><b>My WeChat Public  && Donate:</b><hr/>
 			<img src="image/rb.jpg" />
 			<img src="image/donate.png" /><hr/>
-			<p><b>Developing Function:</b> A link go directly to demo.</p><hr/>
 			<p><b>Thanks for:</b> github|ace.js|and so on.</p></div>
 		</div>
 		<div id="resTab" class="">
@@ -152,8 +151,8 @@
 		ARTICLE = "CSS loader",											// bind comment article
 		htmlEditor = ace.edit("htmlEditor"),							// ace editor init
 		cssEditor = ace.edit("cssEditor"),
-		jsEditor = ace.edit("jsEditor");
-
+		jsEditor = ace.edit("jsEditor"),
+		position = "CSS3全屏滚动";								// link to designated article
 
 	$(function() {
 		// ace
@@ -164,8 +163,12 @@
 		jsEditor.setTheme("ace/theme/monokai");
 		jsEditor.getSession().setMode("ace/mode/javascript");
 
+		// link with param
+		if(document.location.hash.indexOf("#") > -1) {
+			post = document.location.hash.split("#")[1];
+		}
 		// default demo in index:
-		$.getJSON(CNAME + "post/CSS3全屏滚动.json", function(data) {
+		$.getJSON(CNAME + "post/" + post + ".json", function(data) {
 			htmlEditor.setValue(formatCodeIn(data.html));
 			cssEditor.setValue(formatCodeIn(data.css));
 			jsEditor.setValue(formatCodeIn(data.js));
